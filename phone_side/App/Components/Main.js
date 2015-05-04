@@ -3,7 +3,11 @@ var React = require("react-native");
 var {
 	View,
 	Text,
-	StyleSheet
+	StyleSheet,
+	TextInput,
+	TouchableHighlight, // handle the touch event 
+	ActivityIndicatorIOS, // the spiner staff
+
 } = React;
 
 var styles = StyleSheet.create({
@@ -13,7 +17,7 @@ var styles = StyleSheet.create({
     marginTop: 65,
     flexDirection: 'column',
     justifyContent: 'center',
-    backgroundColor: '#48BBEC'
+    backgroundColor: '#48BBEC' 
   },
   title: {
     marginBottom: 20,
@@ -52,10 +56,46 @@ var styles = StyleSheet.create({
 
 
 class Main extends React.Component{
+	constructor(props){ // question marker here
+		super(props);
+		this.state = {
+			username: "",
+			isLoading: false,
+			error: false
+		}
+
+	}
+	handleChange(event){
+		this.setState({
+			username: event.nativeEvent.text
+		});
+	}
+
+	handleSubmit(event){
+		// update our indicatorIOS spinner
+		// fetch data from github
+		// reroute to the next passing that github infomation
+		this.setState({
+			isLoading:true
+		})
+		console.log("submit", this.state.isLoading);
+	}
+
 	render() {
 		return (
 			<View style={styles.mainContainer}>
-			  <Text> hello, iam Main view</Text>
+			  <Text style={styles.title}>Input Github user</Text>
+			  <TextInput 
+			    style={styles.searchInput}
+			    value={this.state.username}
+			    onChange={this.handleChange.bind(this)} />
+			  <TouchableHighlight
+			    style={styles.button}
+			    onPress={this.handleSubmit.bind(this)}
+			    underlayColor="white">
+			    <Text style={styles.buttonText}> SEARCH </Text>
+
+			  </TouchableHighlight>
 			</View>
 		)
 	}
