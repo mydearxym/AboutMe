@@ -27,6 +27,9 @@ class Dashboard extends React.Component {
 		return (
 			<View style={styles.container}>
 			  <Text>this is the Dashboard page</Text>
+			
+			  <Text>{this.props.userInfo}</Text>
+
 			</View>
 			)
 	}

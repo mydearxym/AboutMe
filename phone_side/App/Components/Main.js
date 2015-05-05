@@ -86,7 +86,7 @@ class Main extends React.Component{
 		api.getBio(this.state.username)
 		  .then((res) => {
 		  	console.log("res: ", res);
-		  	if(res.message === 'Not Foud'){
+		  	if(res.message === 'Not Found'){
 		  		this.setState({
 		  			error: "User not found",
 		  			isLoading: false
@@ -112,6 +112,10 @@ class Main extends React.Component{
 	}
 
 	render() {
+		 var showErr = (
+			this.state.error ? <Text> {this.state.error} </Text> : <View></View>
+		);
+
 		return (
 			<View style={styles.mainContainer}>
 			  <Text style={styles.title}>Input Github user</Text>
@@ -124,8 +128,14 @@ class Main extends React.Component{
 			    onPress={this.handleSubmit.bind(this)}
 			    underlayColor="white">
 			    <Text style={styles.buttonText}> SEARCH </Text>
-
 			  </TouchableHighlight>
+			  <ActivityIndicatorIOS
+			    animating={this.state.isLoading}
+			    color="#111"
+			    size="large">
+			  </ActivityIndicatorIOS>
+
+			  {showErr}
 			</View>
 		)
 	}
