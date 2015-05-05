@@ -31,7 +31,7 @@ class phone_side extends  React.Component{
       <NavigatorIOS 
       style={styles.container}
         initialRoute={{ 
-          title: '首页-' ,
+          title: '首页' ,
           component:Main
 
         }} />

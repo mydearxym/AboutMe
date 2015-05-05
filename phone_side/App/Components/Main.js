@@ -1,4 +1,7 @@
 var React = require("react-native");
+var api = require("../utils/api");
+var Dashboard = require("./Dashboard");
+
 
 var {
 	View,
@@ -58,7 +61,7 @@ var styles = StyleSheet.create({
 class Main extends React.Component{
 	constructor(props){ // question marker here
 		super(props);
-		this.state = {
+		this.state = {  // put state in constructor in Class
 			username: "",
 			isLoading: false,
 			error: false
@@ -70,7 +73,7 @@ class Main extends React.Component{
 			username: event.nativeEvent.text
 		});
 	}
-
+  
 	handleSubmit(event){
 		// update our indicatorIOS spinner
 		// fetch data from github
@@ -78,7 +81,34 @@ class Main extends React.Component{
 		this.setState({
 			isLoading:true
 		})
-		console.log("submit", this.state.isLoading);
+		console.log("search submit", this.state.isLoading);
+
+		api.getBio(this.state.username)
+		  .then((res) => {
+		  	console.log("res: ", res);
+		  	if(res.message === 'Not Foud'){
+		  		this.setState({
+		  			error: "User not found",
+		  			isLoading: false
+		  		}) ;
+		  	} else {
+		  		this.props.navigator.push({ //change the routes
+		  			title: res.name || "Select an Option",
+		  			component: Dashboard, 
+		  			passProps: {userInfo: res}
+		  		});
+		  		this.setState({
+		  			isLoading:false,
+		  			error:false,
+		  			username: '' 
+		  		});
+
+		  	}
+
+		  }).catch((err) => {
+		  	console.log("error: ", err.message);
+		  })
+
 	}
 
 	render() {
