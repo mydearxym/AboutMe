@@ -1,4 +1,5 @@
-var React = require("react-native")
+var React = require("react-native");
+var Profile = require('./Profile');
 
 var {
 	Text,
@@ -24,14 +25,68 @@ var styles = StyleSheet.create({
 });
 
 class Dashboard extends React.Component {
+
+  makeBackground(btn){
+  	var obj = {
+  		flexDirection: "row",
+  		alignSelf: 'stretch',
+  		justifyContent: 'center',
+  		flex:1
+  	}
+
+  	if(btn == 0) {
+  		obj.backgroundColor = "tomato"
+  	} else if(btn === 1){
+  		obj.backgroundColor = "blue"
+  	} else {
+  		obj.backgroundColor = "green"
+  	}
+
+  	return obj;
+  }
+
+  goToProfile(){
+  	console.log("goToProfile");
+  	this.props.navigator.push({ //change the routes
+  	 	component: Profile, 
+  	 	passProps: {userInfo: this.props.userInfo}
+  	 });
+  }
+
+  goToRepos(){
+  	console.log("goToRepos");
+  }
+
+  goToNotes(){
+  	console.log("goToNotes");
+  }
+
 	render() {
 		return (
 			<View style={styles.container}>
 			  <Image source={{uri:this.props.userInfo.avatar_url}} style={styles.image} />
+			  <TouchableHighlight
+			    style={this.makeBackground(0)}
+			    onPress={this.goToProfile.bind(this)}
+			    underlayColor="#D88D7F">
+			    <Text style={styles.buttonText}>view Profile</Text>
+			  </TouchableHighlight>
+			  
+			  <TouchableHighlight
+			    style={this.makeBackground(1)}
+			    onPress={this.goToRepos.bind(this)}
+			    underlayColor="#D88D7F">
+			    <Text style={styles.buttonText}>Go to Repos</Text>
+			  </TouchableHighlight>
 
-			  <Text>this is the Dashboard page</Text>
-			
-			  <Text>{this.props.userInfo}</Text>
+			  <TouchableHighlight
+			    style={this.makeBackground(2)} 
+			    onPress={this.goToNotes.bind(this)}
+			    underlayColor="#D88D7F">
+			    <Text style={styles.buttonText}>Go to Notes</Text>
+			  </TouchableHighlight>
+
+
 
 			</View>
 			)
