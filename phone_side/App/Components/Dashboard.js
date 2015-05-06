@@ -3,8 +3,9 @@ var React = require("react-native")
 var {
 	Text,
 	View,
+	Image,
+	TouchableHighlight,
 	StyleSheet
-
 } = React;
 
 var styles = StyleSheet.create({
@@ -26,6 +27,8 @@ class Dashboard extends React.Component {
 	render() {
 		return (
 			<View style={styles.container}>
+			  <Image source={{uri:this.props.userInfo.avatar_url}} style={styles.image} />
+
 			  <Text>this is the Dashboard page</Text>
 			
 			  <Text>{this.props.userInfo}</Text>
