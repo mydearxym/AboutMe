@@ -1,7 +1,7 @@
 var React = require("react-native");
 var api = require("../utils/api");
 var Dashboard = require("./Dashboard");
-
+var AVOS = require("avoscloud-sdk").AV;
 
 var {
 	View,
