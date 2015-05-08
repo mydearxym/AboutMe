@@ -2,6 +2,17 @@ var React = require("react-native");
 var api = require("../utils/api");
 var Dashboard = require("./Dashboard");
 var AVOS = require("avoscloud-sdk").AV;
+// var AVOS = require("javascript-sdk").AV;
+AVOS.initialize("hz4r30mqwf6nc02jjaaqxkzchjdvv51u1pvicu5nv0toutxi", "0j0ht5vkqxdtmfw815kqzlnxlmjuefhw9qoewa8sdg4dtrov");
+
+var TestObject = AVOS.Object.extend("TestObject");
+var testObject = new TestObject();
+testObject.save({foo: "bar"}, {
+  success: function(object) {
+  console.log("LeanCloud works!");
+  }
+});
+
 
 var {
 	View,
