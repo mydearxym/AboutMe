@@ -40,6 +40,8 @@ var styles = StyleSheet.create({
 
 class Repositories extends React.Component{
   openPage(url){
+    url="http://www.semantic-ui.com.cn/"
+
     this.props.navigator.push({
       title: 'Web View',
       component: Web_View,
