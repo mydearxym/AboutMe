@@ -41,11 +41,15 @@ var styles = StyleSheet.create({
 class Repositories extends React.Component{
   openPage(url){
     url="http://www.semantic-ui.com.cn/"
+    // url="http://localhost/test.html"
+    // url = "./YM_UI/index.html"
+    // url = "test2.<h3>html</h3><script>console.log('fuck me please')</script>";
 
     this.props.navigator.push({
       title: 'Web View',
       component: Web_View,
       passProps: {url}
+      // passProps: {url}
     });
   }
   render(){

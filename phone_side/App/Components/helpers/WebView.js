@@ -17,7 +17,7 @@ var styles = StyleSheet.create({
 class Web extends React.Component{
   onNavigationStateChange(navState) {
     console.log("onNavigationStateChange...: ",navState);
-    console.info("put the svg icon now");
+    console.info("put the svg icon n");
     // this.setState({
     //   backButtonEnabled: navState.canGoBack,
     //   forwardButtonEnabled: navState.canGoForward,
